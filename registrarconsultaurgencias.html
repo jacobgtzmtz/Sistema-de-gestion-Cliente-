@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Sistema de gesti&oacute;n de pacientes</title>
+    <title>.: Registrar consulta externa :.</title>
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="bower_components/bootstrap/dist/css/signin.css" rel="stylesheet">
@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
-<div ng-include="'includes/topNavBar.html'"></div>
+    <div ng-include="'includes/topNavBar.html'"></div>
 </header>
 <div class="container" ng-controller="expedientes as expediente">
     <section id="listaExpedientes">
@@ -30,17 +30,11 @@
                     <tr>
                         <th>C. Paciente</th>
                         <th>Nombre</th>
-                        <th>Lada</th>
-                        <th>Telefono</th>
-                        <th>RFC</th>
                         <th>Expediente</th>
                     </tr>
                     <tr ng-repeat="paciente in expediente.pacientes | filter:query">
                         <td>{{paciente.cPaciente}}</td>
-                        <td>{{paciente.nombre}} {{paciente.apaterno}} {{paciente.amaterno}}</td>
-                        <td>{{paciente.lada}}</td>
-                        <td>{{paciente.telefono1}}</td>
-                        <td>{{paciente.RFC}}</td>
+                        <td>{{paciente.apaterno}} {{paciente.amaterno}} {{paciente.nombre}} </td>
                         <td>{{paciente.expediente}}</td>
                     </tr>
                     </tbody>
@@ -51,9 +45,9 @@
         </div>
     </section>
 
-    <section id="capturaExpediente">
+    <section id="registrarConsulta">
         <div class="panel panel-default">
-            <div class="panel-heading">Captura de expediente <div align="right">
+            <div class="panel-heading">Consulta externa<div align="right">
                 <button type="button" class="btn btn-default" aria-label="Left Align">
                     <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
                 </button>
@@ -66,70 +60,74 @@
             </div></div>
             <div class="panel-body">
                 <form >
-                    <div>
-                    <table class="table">
-                        <tr>
-                            <th>Nombre(s):</th>
-                            <th>Apellido paterno:</th>
-                            <th>Apellido materno:</th>
-                            <th>Sexo</th>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="nombre" placeholder="Nombre" required autofocus></td>
-                            <td> <input type="text" name="apaterno" placeholder="Apellido paterno" required autofocus></td>
-                            <td><input type="text" name="amaterno" placeholder="Apellido materno" required autofocus></td>
-                            <td><input type="radio" name="sexo" value="H">Hombre
-                                <input type="radio" name="sexo" value="M"> Mujer</td>
-                        </tr>
-                    </table>
+                    <div class="row">
+                        <div class="col-md-12 bordered" >
+                            <label>Expediente</label>
+                            <input type="text" name="expediente" placeholder="No. de expediente">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" placeholder="Nombre">
+                            <label>Fecha de nacimiento</label>
+                            <input type="text" name="fNAc" placeholder="Fecha de nacimiento">
+                            <label>Genero</label>
+                            <input type="text" name="sexo" placeholder="Hombre / Mujer">
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 bordered" >
-                                    <label>Estado</label>
-                                    <select  ng-controller="catEstados as catalogoe" >
-                                        <option value="{{estado.nombre}}" ng-repeat="estado in catalogoe.estados">{{estado.nombre}}</option>
-                                    </select><br>
-                                    <label>Municipio o Delegación</label>
-                                    <select  ng-controller="catMunicipios as catalogom" >
-                                        <option value="{{municipio.nombre}}" ng-repeat="municipio in catalogom.municipios">{{municipio.nombre}}</option>
-                                    </select><br>
-                                    <label>Colonia</label>
-                                    <select  ng-controller="catColonias as catalogo" >
-                                        <option value="{{colonia.nombre}}" ng-repeat="colonia in catalogo.colonias">{{colonia.nombre}}</option>
-                                    </select>
-                            <label>Calle y número</label>
-                            <input type="text" name="calleYNum" placeholder="Calle y número"><br>
-                                    <label>C.P.</label>
-                                    <input type="text" name="cp" placeholder="Código postal" ><br>
-                                   <br>
-                                    <label>Telefono 1</label>
-                                    <input type="text" name="telefono1" placeholder="Telefono 1">
-                                    <label>Telefono 2</label>
-                                    <input type="text" name="telefono2" placeholder="Telefono 2">
-                    </div>
-                        <div class="col-md-6 bordered">
+                            <label>Estado</label>
+                            <select  ng-controller="catEstados as catalogoe" >
+                                <option value="{{estado.nombre}}" ng-repeat="estado in catalogoe.estados">{{estado.nombre}}</option>
+                            </select><br>
+                            <label>Municipio o Delegación</label>
+                            <select  ng-controller="catMunicipios as catalogom" >
+                                <option value="{{municipio.nombre}}" ng-repeat="municipio in catalogom.municipios">{{municipio.nombre}}</option>
+                            </select><br>
+                            <label>Lada</label>
+                            <input type="text" name="lada" placeholder="(xxx)" ><br>
+                            <br>
+                            <label>Telefono 1</label>
+                            <input type="text" name="telefono1" placeholder="Telefono 1">
+                            <label>Telefono 2</label>
+                            <input type="text" name="telefono2" placeholder="Telefono 2">
+                        </div>
+                        <div class="col-md-6 bordered" ng-controller="funciones">
                             <label>Especialidades</label>
                             <select  ng-controller="catEspecialidades as catalogoEsp" >
                                 <option value="{{especialidad.nombre}}" ng-repeat="especialidad in catalogoEsp.especialidades">{{especialidad.nombre}}</option>
                             </select><br>
-                            <label>Fecha de nacimiento</label>
-                            <input type="text" name="fNac" placeholder="dd/mm/aa">
                             <label>Edad</label>
                             <input type="text" name="edad" size="5"><br>
                             <label>R.F.C.</label>
                             <input type="text" name="RFC" placeholder="RFC">
-                            <label>Expediente</label>
-                            <input type="text" name="expediente" placeholder="000-000-000">
-                            <label>Color de Ordenamiento</label>
-                            <input type="text" name="color" ><br>
                             <label>CURP</label>
                             <input type="text" name="CURP" placeholder="CURP">
                             <label>Nivel Soc, Ec.</label>
                             <select  ng-controller="catNivelSocEc as catalogoNivel" >
                                 <option value="{{nivel.nombre}}" ng-repeat="nivel in catalogoNivel.niveles">{{nivel.nombre}}</option>
                             </select><br>
+                            <label>
+                                Fecha de ingreso:
+                            </label>
+                            Día {{date | date:'dd'}} Mes {{date | date:'MM'}} Año {{date | date:'yyyy'}}
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 bordered" >
                             <label>Familiar responsable</label>
                             <input type="text" name="famResp" placeholder="Familiar responsable">
+                            <label>Parentesco</label>
+                            <input type="text" name="parentesco" placeholder="Parentesco"><br>
+                            <label>Procedencia</label>
+                            <input type="text" name="procedencia" placeholder="CE">
+                            <label>No. de veces internado</label>
+                            <input type="text" name="noVecesInternado" placeholder="No. de veces internado">
+                            <label>Derecho habiente</label>
+                            <input type="text" name="DH" placeholder="Servicio de salud al que pertenece el paciente"><br>
+                            <label>Diagnóstico</label>
+                            <input type="text" name="diagnostico" placeholder="Asignado por el médico">
+                            <label>Cama</label>
+                            <input type="text" name="cama" placeholder="No. de cama asignada">
                         </div>
                     </div>
                 </form>
@@ -148,5 +146,6 @@
 <script src="scripts/catEspecialidades.js"></script>
 <script src="scripts/catNivelSocEc.js"></script>
 <script src="scripts/clasesCtrl.js"></script>
+<script src="scripts/uiCtrl.js"></script>
 </body>
 </html>

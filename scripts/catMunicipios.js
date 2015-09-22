@@ -1,0 +1,71 @@
+/**
+ * Created by jacob on 15/09/15.
+ */
+(function(){
+
+    app.controller ("catMunicipios", function(){
+        this.municipios = municipios;
+    })
+
+
+var municipios=[{"nombre":"Ahualulco"},
+    {"nombre":"Alaquines"},
+    {"nombre":"Aquismón"},
+    {"nombre":"Armadillo de los Infante"},
+    {"nombre":"Axtla de Terrazas"},
+    {"nombre":"Cárdenas"},
+    {"nombre":"Catorce"},
+    {"nombre":"Cedral"},
+    {"nombre":"Cerritos"},
+    {"nombre":"Cerro de San Pedro"},
+    {"nombre":"Charcas"},
+    {"nombre":"Ciudad del Maíz"},
+    {"nombre":"Ciudad Fernández"},
+    {"nombre":"Ciudad Valles"},
+    {"nombre":" Coxcatlán"},
+    {"nombre":"Ebano"},
+    {"nombre":"El Naranjo"},
+    {"nombre":"Guadalcázar"},
+    {"nombre":"Huehuetlán"},
+    {"nombre":"Lagunillas"},
+    {"nombre":"Matehuala"},
+    {"nombre":"Matlapa"},
+    {"nombre":"Mexquitic de Carmona"},
+    {"nombre":"Moctezuma"},
+    {"nombre":"Rayón"},
+    {"nombre":"Rioverde"},
+    {"nombre":"Salinas"},
+    {"nombre":"San Antonio"},
+    {"nombre":"San Ciro de Acosta"},
+    {"nombre":"San Luis Potosí"},
+    {"nombre":"San Martín Chalchicuautla"},
+    {"nombre":"San Nicolás Tolentino"},
+    {"nombre":"Santa Catarina"},
+    {"nombre":"Santa María del Río"},
+    {"nombre":"Santo Domingo"},
+    {"nombre":"San Vicente Tancuayalab"},
+    {"nombre":"Soledad de Graciano Sánchez"},
+    {"nombre":"Tamasopo"},
+    {"nombre":"Tamazunchale"},
+    {"nombre":"Tampacán"},
+    {"nombre":"Tampamolón"},
+    {"nombre":"Corona"},
+    {"nombre":"Tamuín"},
+    {"nombre":"Tancanhuitz de Santos"},
+    {"nombre":"Tanlajás"},
+    {"nombre":"Tanquián de Escobedo"},
+    {"nombre":"Tierra Nueva"},
+    {"nombre":"Vanegas"},
+    {"nombre":"Venado"},
+    {"nombre":"Villa de Arriaga"},
+    {"nombre":"Villa de Arista"},
+    {"nombre":"Villa de Guadalupe"},
+    {"nombre":"Villa de la Paz"},
+    {"nombre":"Villa de Ramos"},
+    {"nombre":"Villa de Reyes"},
+    {"nombre":"Villa Hidalgo"},
+    {"nombre":"Villa Juárez"},
+    {"nombre":"Xilitla"},
+    {"nombre":"Zaragoza"}
+    ];
+})();

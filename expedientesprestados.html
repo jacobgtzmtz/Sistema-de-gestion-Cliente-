@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es" ng-app = "gestor">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>.: Regresar expediente :.</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div ng-include="'includes/topNavBar.html'"></div>
+</header>
+
+<div class="container" ng-controller="expedientes as expediente">
+    <section id="listaExpedientes">
+        <div class="panel panel-default" ng-controller="clasesController">
+            <div class="panel-heading" >
+                Buscar: <input ng-model="query">
+                <div class="pull-right"><button class="glyphicon glyphicon-chevron-up {{showHideUp}}" id="up"  ng-click="ocultarPanel()"></button></div>
+                <div class="pull-right"><button class="glyphicon glyphicon-chevron-down {{showHideDown}}" id="down" ng-click="mostrarPanel()"></button></div>
+            </div>
+
+            <div class="panel-body {{showHidepanel}}">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <th>Expediente</th>
+                        <th>Nombre</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Servicio</th>
+                        <th>Tiempo de salida</th>
+                        <th>Solicitado por</th>
+
+                    </tr>
+                    <tr ng-repeat="paciente in expediente.pacientes | filter:query">
+                        <td>{{paciente.expediente}}</td>
+                        <td>{{paciente.apaterno}} {{paciente.amaterno}} {{paciente.nombre}} </td>
+                        <td>{{paciente.fNac}}</td>
+                        <td>{{paciente.telefono1}}</td>
+                        <td>{{paciente.RFC}}</td>
+                        <td>{{paciente.solicitado}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <nav ng-include="'includes/pagination.html'">
+                </nav>
+            </div>
+        </div>
+    </section>
+    <section id="expedientes" >
+        <div class="panel panel-default">
+            <div class="panel-heading">Regresar expediente
+                <div align="right">
+                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12 bordered" >
+                        <h5>DATOS DEL EXPEDIENTE</h5>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Número de expediente</label>
+                                <input type="text" name="expediente" placeholder="No de expediente">
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Nombre del paciente</label>
+                                <input type="text" name="nombre" placeholder="Nombre y apellidos"><br>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Fecha de nacimiento</label>
+                                <input type="text" name="fecnac" placeholder="Fecha de Nacimiento">
+                            </div>
+                        </div>
+                        <div class="row" ng-controller="funciones">
+
+                            <div class="col-lg-6">
+                                Fecha de devolución: Día {{date | date:'dd'}} Mes {{date | date:'MM'}} Año {{date | date:'yyyy'}}
+                            </div>
+                            <div class="col-lg-6">
+                                Hora de devolución: {{date | date:'h:mma'}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 bordered" >
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Nombre de quien recibe:</label>
+                                <input type="text" name="nomResp" placeholder="Nombre completo:">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label>Nombre de quien entrega:</label>
+                                    <input type="text" name="nomSolic" placeholder="Nombre completo:">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="scripts/menucontroller.js"></script>
+<script src="scripts/expedientescontroller.js"></script>
+<script src="scripts/clasesCtrl.js"></script>
+<script src="scripts/uiCtrl.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+.bordered {
+    border-width: thin;
+    border-style: solid;
+    border-color: #E6E6E6;
+}
+
+.centrado {
+    text-align: center;
+}

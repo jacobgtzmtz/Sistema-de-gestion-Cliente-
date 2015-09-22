@@ -6,46 +6,30 @@ var app = angular.module("gestor",[])
 app.controller ("menu", function($scope){
     $scope.archivo = [
         {
-            "nombre":"Crear expediente",
+            "nombre":"Expedientes",
             "url":"crearexpediente.html"
         },
         {
-            "nombre":"Imprimir expediente",
-            "url":"#"
-        },
-        {
-            "nombre":"Buscar expediente",
-            "url":"#"
-        },
-        {
-            "nombre":"Historial expediente",
-            "url":"#"
+            "nombre":"Prestar expediente",
+            "url":"prestarexpediente.html"
         },
         {
             "nombre":"Expedientes prestados",
-            "url":"#"
+            "url":"expedientesprestados.html"
         },
         {
-            "nombre":"Prestar expediente",
-            "url":"#"
-        },
-        {
-            "nombre":"Regresar expediente",
-            "url":"#"
-        },
-        {
-            "nombre":"Depurar expediente",
+            "nombre":"Depurar expedientes",
             "url":"#"
         }]
 
     $scope.administracion = [
         {
             "nombre":"Registrar consulta externa",
-            "url":"#"
+            "url":"registrarconsultaexterna.html"
         },
         {
             "nombre":"Registrar consulta urgencia",
-            "url":"#"
+            "url":"registrarconsultaurgencias.html"
         },
         {
             "nombre":"Imprimir hoja SIS",

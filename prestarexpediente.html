@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es" ng-app = "gestor">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>.: Prestar expediente :.</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div ng-include="'includes/topNavBar.html'"></div>
+</header>
+
+<div class="container" ng-controller="expedientes as expediente">
+    <section id="listaExpedientes">
+        <div class="panel panel-default" ng-controller="clasesController">
+            <div class="panel-heading" >
+                Buscar: <input ng-model="query">
+                <div class="pull-right"><button class="glyphicon glyphicon-chevron-up {{showHideUp}}" id="up"  ng-click="ocultarPanel()"></button></div>
+                <div class="pull-right"><button class="glyphicon glyphicon-chevron-down {{showHideDown}}" id="down" ng-click="mostrarPanel()"></button></div>
+            </div>
+
+            <div class="panel-body {{showHidepanel}}">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <th>C. Paciente</th>
+                        <th>Nombre</th>
+                        <!--<th>Lada</th>
+                        <th>Telefono</th>
+                        <th>RFC</th>-->
+                        <th>Expediente</th>
+                    </tr>
+                    <tr ng-repeat="paciente in expediente.pacientes | filter:query">
+                        <td>{{paciente.cPaciente}}</td>
+                        <td>{{paciente.nombre}} {{paciente.apaterno}} {{paciente.amaterno}}</td>
+                        <!--<td>{{paciente.lada}}</td>
+                        <td>{{paciente.telefono1}}</td>
+                        <td>{{paciente.RFC}}</td>-->
+                        <td>{{paciente.expediente}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <nav ng-include="'includes/pagination.html'">
+                </nav>
+            </div>
+        </div>
+    </section>
+    <section id="expedientes" >
+        <div class="panel panel-default">
+            <div class="panel-heading">Prestamo de expedientes
+                <div align="right">
+                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12 bordered" >
+                        <h5>A)DATOS DEL EXPEDIENTE CLINICO</h5>
+                        <div class="row">
+                                <div class="col-lg-4">
+                                    <label>Número de expediente</label>
+                                    <input type="text" name="expediente" placeholder="No de expediente">
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>Servicio</label>
+                                    <input type="text" name="servicio" placeholder="servicio">
+                                </div>
+                                <div class="col-lg-4">
+                                <label>Nombre del paciente</label>
+                                <input type="text" name="nombre" placeholder="Nombre y apellidos"><br>
+                                </div>
+                        </div>
+                        <label>Para atención en</label>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="input-group" >
+                                    <span>
+                                        <input type="checkbox" name="consultaExterna" aria-label="...">
+                                    </span>
+                                    <span>Consulta externa</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <span>
+                                        <input type="checkbox" name="Hospitalización" aria-label="...">
+                                    </span>
+                                    Hospitalización
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <span>
+                                        <input type="checkbox" name="Urgencias" aria-label="...">
+                                    </span>
+                                    Urgencias
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    Otro
+                                    <span>
+                                        <input type="checkbox" name="otro" aria-label="...">
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Especifique">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-controller="funciones">
+                            <div class="col-lg-6">
+                                Hora: {{date | date:'h:mma'}}
+                            </div>
+                            <div class="col-lg-6">
+                                Fecha: Día {{date | date:'dd'}} Mes {{date | date:'MM'}} Año {{date | date:'yyyy'}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 bordered" >
+                        <h5>B)DATOS DEL SOLICITANTE</h5>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label>Nombre:</label>
+                                <input type="text" name="nomSolic" placeholder="Nombre completo:">
+                            </div>
+                            <div class="col-lg-12">
+                                <label>Categoría</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    <span>
+                                        <input type="checkbox" name="Base" aria-label="...">
+                                    </span>
+                                    Base
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    <span>
+                                        <input type="checkbox" name="Residente" aria-label="...">
+                                    </span>
+                                    Residente
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    Especifique grado
+                                    <input type="text"  placeholder="grado">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 bordered" >
+                        <h5>C)NOMBRE COMPLETO DE QUIEN ENTREGA</h5>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label>Nombre:</label>
+                                <input type="text" name="nomResp" placeholder="Nombre completo:">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 bordered" >
+                        <h5>D)PARA SER LLENADO POR EL PERSONAL DE ARCHIVO CLINICO</h5>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label>Expediente</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    <span>
+                                        <input type="checkbox" name="original" aria-label="...">
+                                    </span>
+                                    Original
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    <span>
+                                        <input type="checkbox" name="provisional" aria-label="...">
+                                    </span>
+                                    Provisional
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    Tomo
+                                    <input type="text"  placeholder="tomo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="scripts/menucontroller.js"></script>
+<script src="scripts/expedientescontroller.js"></script>
+<script src="scripts/clasesCtrl.js"></script>
+<script src="scripts/uiCtrl.js"></script>
+</body>
+</html>
