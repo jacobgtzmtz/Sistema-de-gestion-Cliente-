@@ -1,7 +1,7 @@
 /**
  * Created by jacob on 11/09/15.
  */
-var app = angular.module("gestor",[])
+var app = angular.module("gestor",[]);
 
 app.controller ("menu", function($scope){
     $scope.archivo = [
@@ -20,7 +20,7 @@ app.controller ("menu", function($scope){
         {
             "nombre":"Depurar expedientes",
             "url":"#"
-        }]
+        }];
 
     $scope.administracion = [
         {
@@ -30,10 +30,6 @@ app.controller ("menu", function($scope){
         {
             "nombre":"Registrar consulta urgencia",
             "url":"registrarconsultaurgencias.html"
-        },
-        {
-            "nombre":"Imprimir hoja SIS",
-            "url":"#"
         },
         {
             "nombre":"Buscar camas",
@@ -51,4 +47,4 @@ app.controller ("menu", function($scope){
             "nombre":"Listar paciente y estado de salud",
             "url":"#"
         }]
-})
+});
